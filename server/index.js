@@ -4,12 +4,14 @@
     var config = require('./config/index')
     var app = require('./express/index')
 
-    mongoose.connect('mongodb://localhost:27017/approval', {
+    mongoose.connect(config.mongo.connectionString, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, function (err) {
         if (err) {
-            console.log('unable to connect database');
+            console.log('unable to connect database', err);
+        } else {
+            console.log('Mongo db connection is successful.')
         }
     });
 
