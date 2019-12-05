@@ -1,11 +1,16 @@
 (function () {
     var express = require('express');
+    var bodyParser = require('body-parser')
     var path = require('path');
     var glob = require('glob');
 
     var config = require('./../config');
     var app = express();
 
+
+    app.use(bodyParser.urlencoded({ extended: false }))
+
+    app.use(bodyParser.json())
     app.use(express.static('public'));
     var routeDir = './../routes/';
 

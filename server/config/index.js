@@ -5,7 +5,7 @@
                 port: process.env.PORT || 5000
             },
             mongo: {
-                connectionString: process.env.MongoDB || 'mongodb://localhost:27017/test'
+                connectionString: process.env.MongoDB || 'mongodb://localhost:27017/MeanApp'
             }
         },
         test: {
@@ -21,7 +21,7 @@
                 port: process.env.PORT || 5000
             },
             mongo: {
-                connectionString: process.env.MongoDB || 'mongodb://localhost:27017/test'
+                connectionString: process.env.MongoDB || 'mongodb://localhost:27017/MeanApp'
             }
         }
     };
