@@ -6,7 +6,8 @@
         firstName: { type: String },
         lastName: { type: String },
         username: { type: String, unique: true },
-        password: { type: String }
+        password: { type: String },
+        role: { type: String, default: 'user' }
     });
 
     User = mongoose.model('user', userSchema);
