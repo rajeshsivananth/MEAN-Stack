@@ -14,7 +14,8 @@
     }
 
     exports.create = function (options, callback) {
-        User.create(options.data, callback);
+        var user = new User(options.data);
+        user.save(callback)
     }
 
     exports.update = function (options, callback) {

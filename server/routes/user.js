@@ -9,6 +9,6 @@
         });
         app.post('/api/login', users.authenticate);
         app.get('/api/users', users.getUsers);
-        // app.post('/api/users', users.createUser);
+        app.post('/api/users', users.createUser);
     };
 }())
