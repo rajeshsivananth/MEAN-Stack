@@ -42,4 +42,32 @@
             }
         });
     }
+
+    async function auth(req, res, next) {
+        const authorization = req.header('Authorization');
+        const token = typeof authorization === 'string' ? authorization.replace('Bearer ', '') : undefined;
+
+        if (token) {
+            const data = jwt.verify(token, config.server.secret);
+            try {
+                const user = await userService.async.findOne({
+                    q: {
+                        _id: data._id
+                    }
+                });
+                if (!user) {
+                    return res.status(401).send({ error: 'Authentication is failed.' })
+                }
+                req.user = user
+                req.token = token
+                next();
+            } catch (error) {
+                res.status(401).send({ error: 'Not authorized to access this resource' });
+            }
+        } else {
+            return res.status(401).send({ error: 'Authentication is failed.' })
+        }
+    }
+
+    exports.auth = auth;
 }())

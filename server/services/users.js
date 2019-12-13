@@ -2,7 +2,8 @@
     var User = require('./../model/User');
 
     exports.find = function (options, callback) {
-        User.find(options.q, callback);
+        options.projection = options.projection || { password: 0 };
+        User.find(options.q, options.projection, callback);
     }
 
     exports.findOne = function (options, callback) {
@@ -25,4 +26,12 @@
     exports.remove = function (options, callback) {
         User.findOneAndRemove(options.q, callback);
     }
+
+    async function findOne(options) {
+        return await User.findOne(options.q);
+    }
+
+    exports.async = {
+        findOne: findOne
+    };
 }())
